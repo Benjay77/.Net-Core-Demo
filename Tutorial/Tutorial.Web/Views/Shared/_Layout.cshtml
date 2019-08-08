@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <environment exclude="Development">
+        <link href="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/css/bootstrap.css" rel="stylesheet"
+              asp-fallback-href="~/node_modules/bootstrap/dist/css/bootstrap.css"
+              asp-fallback-test-class="sr-only"
+              asp-fallback-test-property="position"
+              asp-fallback-test-value="absolute">
+    </environment>
+</head>
+<body>
+    <!-- As a heading -->
+    @*<nav class="navbar navbar-light bg-light">
+        <span class="navbar-brand mb-0 h1">Navbar</span>
+    </nav>*@
+    <h1>模板演示</h1>
+    <div>
+        @RenderBody()
+    </div>
+    <div>
+        @RenderSection("bottom", required: false)
+    </div>
+
+    @*@await  Component.InvokeAsync("Welcome")*@
+    @*如果组件名字由两个以上单词组成 用短横线连接都是小写
+        <vc:welcome-student></vc:welcome-student>*@
+<vc:welcome></vc:welcome>
+<environment exclude="Development">
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/core.js"
+            asp-fallback-src="~/node_modules/jquery/dist/jquery.js"
+            asp-fallback-test="Window.jQuery"></script>
+    <script src="https://cdn.bootcss.com/jquery-validate/1.19.1/jquery.validate.js"
+            asp-fallback-src="~/node_modules/jquery-validation/dist/jquery.validate.js"
+            asp-fallback-test="Window.jQuery && Window.jQuery.validator"></script>
+    <script src="https://cdn.bootcss.com/jquery-validation-unobtrusive/3.2.11/jquery.validate.unobtrusive.js"
+            asp-fallback-src="~/node_modules/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.js"
+            asp-fallback-test="Window.jQuery && Window.jQuery.validator.unobtrusive"></script>
+</environment>
+</body>
+</html>

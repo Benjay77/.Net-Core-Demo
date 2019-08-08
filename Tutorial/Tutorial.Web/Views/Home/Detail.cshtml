@@ -1,0 +1,25 @@
+﻿@model Student
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Detail</title>
+</head>
+<body>
+    <div>
+        <h1>
+            学生信息
+        </h1>
+        <div>ID:@Model.Id</div>
+        <div>姓名：@Model.FirstName ·@Model.LastName</div>
+        <div>性别：@Model.Gender</div>
+        <div>出生日期：@Model.BirthDate.ToString("yyyy-MM-dd")</div>
+        <a asp-action="Index">返回</a>
+    </div>
+</body>
+</html>

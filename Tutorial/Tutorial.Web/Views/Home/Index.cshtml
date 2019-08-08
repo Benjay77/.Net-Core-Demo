@@ -1,0 +1,26 @@
+﻿@model HomeIndexViewModel
+@{
+    ViewBag.Title = "Home Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Hello From Index.cshtml</title>
+</head>
+<body>
+<h1>Students</h1>
+
+<partial name="_StudentTable" for="studentViewModels"/>
+
+@section bottom
+{
+    <div>
+        <a asp-action="Create">新增</a>
+    </div>
+}
+</body>
+</html>
