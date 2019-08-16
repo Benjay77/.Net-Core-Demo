@@ -1,4 +1,4 @@
-﻿@model LoginViewModel
+﻿@model RegisterViewModel
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -6,8 +6,9 @@
 
 <!DOCTYPE html>
 
-<h2>请您登录或<a asp-action="Register" asp-controller="Account">注册</a></h2>
-<form asp-action="Login" asp-controller="Account" method="post">
+<h2>注册</h2>
+
+<form asp-action="Register" asp-controller="Account" method="post">
     <div>
         <label asp-for="UserName"></label>
         <input asp-for="UserName" />

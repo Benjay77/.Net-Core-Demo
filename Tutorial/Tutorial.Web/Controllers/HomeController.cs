@@ -2,7 +2,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Newtonsoft.Json;
 using Tutorial.Web.IServices;
 using Tutorial.Web.Models;
@@ -10,6 +12,7 @@ using Tutorial.Web.ViewModels;
 
 namespace Tutorial.Web.Controllers
 {
+    //[Authorize]
     public class HomeController : Controller
     {
         private readonly IRepository<Student> _repository;
@@ -39,12 +42,14 @@ namespace Tutorial.Web.Controllers
             //return Content(id.ToString());
         }
 
+        [Authorize]
         [HttpGet]
         public IActionResult Create()
         {
             return View();
         }
 
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Create(StudentCreateViewModel student)

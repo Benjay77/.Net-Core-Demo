@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
@@ -35,6 +37,32 @@ namespace Tutorial.Web
             //var connectionString = _configuration["ConnectionStrings:DefaultConnection"];
             services.AddDbContext<DataContext>(options => { options.UseSqlServer(_configuration.GetConnectionString("DefaultConnection"));});
             services.AddScoped<IRepository<Student>, EFCoreRepository>();
+            services.AddDbContext<IdentityDbContext>(options =>
+                options.UseSqlServer(
+                    _configuration.GetConnectionString("DefaultConnection"),b=>b.MigrationsAssembly("Tutorial.Web")));
+            services.AddDefaultIdentity<IdentityUser>()
+                .AddEntityFrameworkStores<IdentityDbContext>();
+
+            services.Configure<IdentityOptions>(options =>
+            {
+                // Password settings.
+                options.Password.RequireDigit = false;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequiredLength = 1;
+                options.Password.RequiredUniqueChars = 1;
+
+                // Lockout settings.
+                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
+                options.Lockout.MaxFailedAccessAttempts = 5;
+                options.Lockout.AllowedForNewUsers = true;
+
+                // User settings.
+                options.User.AllowedUserNameCharacters =
+                    "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
+                options.User.RequireUniqueEmail = false;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -56,7 +84,7 @@ namespace Tutorial.Web
                 RequestPath = "/node_Modules",
                 FileProvider = new PhysicalFileProvider(Path.Combine(env.ContentRootPath, "node_Modules"))
             });
-
+            app.UseAuthentication();
             //app.UseMvcWithDefaultRoute();
             app.UseMvc(builder => 
             {
