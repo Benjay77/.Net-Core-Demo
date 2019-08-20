@@ -1,0 +1,42 @@
+﻿@using Heavy.Web.Models;
+@model IEnumerable<ApplicationUser>
+
+@{
+    Layout = "";
+}
+
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">用户名</th>
+            <th scope="col">邮箱</th>
+            <th scope="col">身份证号</th>
+            <th scope="col">出生日期</th>
+            <th scope="col">操作</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var u in Model)
+        {
+        <tr>
+            <th scope="row">@u.Id</th>
+            <td>@u.UserName</td>
+            <td>@u.Email</td>
+            <td>@u.IdCardNo</td>
+            <td>@u.BirthDate</td>
+            <td>
+                <form asp-action="EditUser" method="post" asp-route-id="@u.Id">
+                    <button type="submit" class="btn btn-danger" onclick="return confirm('确认编辑？')">编辑</button>
+                </form>
+            </td>
+            <td>
+                <form asp-action="DeleteUser" method="post" asp-route-id="@u.Id">
+                    <button type="submit" class="btn btn-danger" onclick="return confirm('确认删除？')">删除</button>
+                </form>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+<a asp-action="AddUser" class="btn btn-danger">新增用户</a>
