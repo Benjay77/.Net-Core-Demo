@@ -3,10 +3,12 @@
 
 
 @{
-    ViewData["Title"] = "新增用户";
+    ViewBag.Title = "新增用户";
 }
 
-    <form method="post">
+<h2>@ViewBag.Title</h2>
+
+<form method="post">
         <div class="form-group row">
             <label asp-for="UserName" class="col-sm-2"></label>
             <div class="col-sm-10">

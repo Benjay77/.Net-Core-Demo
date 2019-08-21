@@ -52,7 +52,6 @@ namespace Heavy.Web.Controllers
             return View("Index", await _userManager.Users.ToListAsync());
         }
 
-        [HttpGet]
         public IActionResult AddUser()
         {
             return View();
@@ -66,7 +65,7 @@ namespace Heavy.Web.Controllers
                 return View(addUserViewModel);
             }
 
-            var  user = new ApplicationUser(){UserName = addUserViewModel.UserName,Email = addUserViewModel.Email};
+            var  user = new ApplicationUser(){UserName = addUserViewModel.UserName,Email = addUserViewModel.Email,IdCardNo = addUserViewModel.IdCardNo,BirthDate = addUserViewModel.BirthDate};
             var result = await _userManager.CreateAsync(user,addUserViewModel.Password);
             if (result.Succeeded)
             {
@@ -81,18 +80,29 @@ namespace Heavy.Web.Controllers
             return View(addUserViewModel);
         }
 
-        [HttpGet]
-        public IActionResult EditUser()
+        public async Task<IActionResult> EditUser(string id)
         {
-            return View("AddUser");
+            var user = await _userManager.FindByIdAsync(id);
+            if (user!=null)
+            {
+                return View(user);
+            }
+            else
+            {
+                return RedirectToAction("Index");
+            }
         }
 
         [HttpPost]
-        public async Task<IActionResult>  EditUser(string id)
+        public async Task<IActionResult>  EditUser(string id,EditUserViewModel editUserViewModel)
         {
             var user = await _userManager.FindByIdAsync(id);
             if (user != null)
             {
+                user.UserName = editUserViewModel.UserName;
+                user.Email = editUserViewModel.Email;
+                user.IdCardNo = editUserViewModel.IdCardNo;
+                user.BirthDate = editUserViewModel.BirthDate;
                 var result = await _userManager.UpdateAsync(user);
                 if (result.Succeeded)
                 {
@@ -103,13 +113,15 @@ namespace Heavy.Web.Controllers
                 {
                     ModelState.AddModelError(string.Empty, identityError.Description);
                 }
+
+                return View(user);
             }
             else
             {
                 ModelState.AddModelError(string.Empty, "未找到用户！");
+                return View("Index");
             }
 
-            return View("Index", await _userManager.Users.ToListAsync());
         }
     }
 }
