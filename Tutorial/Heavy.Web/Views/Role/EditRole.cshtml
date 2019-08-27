@@ -29,3 +29,13 @@
     <button type="submit" class="btn btn-primary">提交</button>
     <a asp-action="Index" class="btn btn-secondary">返回列表</a>
 </form>
+
+<h3>角色所属用户</h3>
+<ul>
+    @foreach (var u in @Model.Users)
+    {
+        <li>@u</li>
+    }
+</ul>
+<a asp-action="AddUserToRole" class="btn btn-secondary" asp-route-id="@Model.Id">添加用户到角色</a>
+<a asp-action="RemoveUserFromRole" class="btn btn-secondary" asp-route-id="@Model.Id">从角色中删除用户</a>
