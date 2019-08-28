@@ -1,11 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Heavy.Web.ViewModels
 {
     public class EditUserViewModel
     {
-        //public string Id { get; set; }
+        public string Id { get; set; }
 
         [Required, Display(Name = "用户名")]
         public string UserName { get; set; }
@@ -21,5 +22,7 @@ namespace Heavy.Web.ViewModels
 
         [Required, Display(Name = "出生日期"), DataType(DataType.Date)]
         public DateTime BirthDate { get; set; }
+
+        public List<string> Claims { get; set; }
     }
 }

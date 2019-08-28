@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
+using Heavy.Web.Data;
 using Heavy.Web.Models;
 using Heavy.Web.ViewModels;
 using Microsoft.AspNetCore.Authorization;
@@ -12,7 +13,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Heavy.Web.Controllers
 {
-    [Authorize]
+    [Authorize("Administrator")]
     public class UserController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;
@@ -85,7 +86,19 @@ namespace Heavy.Web.Controllers
             var user = await _userManager.FindByIdAsync(id);
             if (user!=null)
             {
-                return View(user);
+                var claims = await _userManager.GetClaimsAsync(user);
+
+                var vm = new EditUserViewModel
+                {
+                    Id = user.Id,
+                    BirthDate = user.BirthDate,
+                    IdCardNo = user.IdCardNo,
+                    UserName =  user.UserName,
+                    Email = user.Email,
+                    Claims = claims.Select(x=>x.Value).ToList()
+                };
+
+                return View(vm);
             }
             else
             {
@@ -114,13 +127,32 @@ namespace Heavy.Web.Controllers
                     ModelState.AddModelError(string.Empty, identityError.Description);
                 }
 
-                return View(user);
+                return View(editUserViewModel);
             }
             else
             {
                 ModelState.AddModelError(string.Empty, "未找到用户！");
-                return View("Index");
+                return RedirectToAction("Index");
             }
+
+        }
+
+        public async Task<IActionResult>  ManageClaims(string id)
+        {
+            var user = await _userManager.Users.Include(x=>x.Claims).Where(x=>x.Id==id).SingleOrDefaultAsync();
+            if (user==null)
+            {
+                return RedirectToAction("Index");
+            }
+
+            var leftClaims = ClaimTypes.AllClaimTypeList.Except(user.Claims.Select(x => x.ClaimType)).ToList();
+
+            var vm = new ManageClaimsViewModel
+            {
+                UserId = user.Id,
+                AvailableClaims = leftClaims
+            };
+            return View(vm);
 
         }
     }

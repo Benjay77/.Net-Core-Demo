@@ -1,4 +1,5 @@
-﻿@model ApplicationUser
+﻿@using Heavy.Web.ViewModels
+@model EditUserViewModel
 
 @{
     ViewBag.Title = "修改用户";
@@ -60,4 +61,21 @@
     <button type="submit" class="btn btn-primary">提交</button>
     <a asp-action="Index" class="btn btn-secondary">返回列表</a>
 </form>
+
+<h3>用户Claims</h3>
+<ul>
+    @foreach (var claim in Model.Claims)
+    {
+        <li>
+            @claim
+            <form asp-action="RemoveClaim" asp-route-claim="@claim" asp-route-id="@Model.Id" method="post">
+                <button class="close" type="submit" aria-label="Close">
+                    <span aria-hidden ="True">&times;</span>
+                </button>
+            </form>
+        </li>
+    }
+</ul>
+
+<a asp-action="ManageClaims" asp-route-id="@Model.Id" class="btn btn-primary">管理用户Claims</a>
 
