@@ -13,7 +13,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Heavy.Web.Controllers
 {
-    [Authorize("Administrator")]
+    [Authorize(Roles = "Administrator")]
     public class UserController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;
