@@ -67,7 +67,10 @@ namespace Heavy.Web
                     }
                     return false;
                 }));
-                options.AddPolicy("编辑专辑2", policy => policy.AddRequirements(new EmailRequirement("@163.com")));
+                options.AddPolicy("编辑专辑2", policy => policy.AddRequirements(
+                    //new EmailRequirement("@163.com")
+                    new QualifiedUserRequirement()
+                    ));
             });
 
             services.AddSingleton<IAuthorizationHandler, EmailHandler>();
