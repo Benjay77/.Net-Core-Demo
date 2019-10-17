@@ -11,7 +11,8 @@ namespace Heavy.Web.Data
         {
             "Edit Albums",
             "Edit Roles",
-            "Edit Users"
+            "Edit Users",
+            "Email"
         };
     }
 }
