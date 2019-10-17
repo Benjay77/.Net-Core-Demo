@@ -35,6 +35,7 @@ namespace Heavy.Web.Controllers
             return View();
         }
 
+        [HttpPost]
         public async Task<IActionResult> AddRole(AddRoleViewModel addRoleViewModel)
         {
             if (!ModelState.IsValid)

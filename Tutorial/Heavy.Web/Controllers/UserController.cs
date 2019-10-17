@@ -13,7 +13,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Heavy.Web.Controllers
 {
-    [Authorize("Administrator")]
+    [Authorize(Roles = "Administrator")]
     public class UserController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;
@@ -154,6 +154,57 @@ namespace Heavy.Web.Controllers
             };
             return View(vm);
 
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ManageClaims(ManageClaimsViewModel vm)
+        {
+            var user = await _userManager.FindByIdAsync(vm.UserId);
+            if (user==null)
+            {
+                return RedirectToAction("Index");
+            }
+            var claim = new IdentityUserClaim<string>
+            {
+                ClaimType = vm.ClaimId,
+                ClaimValue = vm.ClaimId
+            };
+
+            user.Claims.Add(claim);
+
+            var result = await _userManager.UpdateAsync(user);
+            if (result.Succeeded)
+            {
+                return RedirectToAction("EditUser", new {id = vm.UserId});
+            }
+            ModelState.AddModelError(String.Empty, "编辑用户Claims时发生错误");
+            return View(vm);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> RemoveClaim(string id,string claim)
+        {
+            var user = await _userManager.Users.Include(x => x.Claims).Where(x => x.Id == id).SingleOrDefaultAsync();
+            if (user==null)
+            {
+                return RedirectToAction("Index");
+            }
+
+            var claims = user.Claims.Where(x => x.ClaimType == claim).ToList();
+
+            foreach (var c in claims)
+            {
+                user.Claims.Remove(c);
+            }
+
+            var result = await _userManager.UpdateAsync(user);
+            if (result.Succeeded)
+            {
+                return RedirectToAction("EditUser", new {id});
+            }
+
+            ModelState.AddModelError(String.Empty, "删除用户claim时发生错误！");
+            return RedirectToAction("ManageClaims", new { id });
         }
     }
 }
