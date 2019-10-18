@@ -10,7 +10,7 @@ namespace Heavy.Web.Auth
     {
         protected override Task HandleRequirementAsync(AuthorizationHandlerContext context, QualifiedUserRequirement requirement)
         {
-            if (context.User.IsInRole("Administrators"))
+            if (context.User.IsInRole("Administrator"))
             {
                 context.Succeed(requirement);
             }
