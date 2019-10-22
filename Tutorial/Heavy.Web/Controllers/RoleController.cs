@@ -191,7 +191,7 @@ namespace Heavy.Web.Controllers
             var users = await _userManager.Users.ToListAsync();
             foreach (var user in users)
             {
-                if (!await _userManager.IsInRoleAsync(user, role.Name))
+                if (await _userManager.IsInRoleAsync(user, role.Name))
                 {
                     vm.Users.Add(user);
                 }
