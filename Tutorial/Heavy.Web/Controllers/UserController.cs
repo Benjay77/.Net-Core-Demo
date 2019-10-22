@@ -59,6 +59,7 @@ namespace Heavy.Web.Controllers
         }
 
         [HttpPost]
+        //public async Task<IActionResult> AddUser([Bind("AnotherUser")] UserAddViewModel userAddViewModel)
         public async Task<IActionResult> AddUser(AddUserViewModel addUserViewModel)
         {
             if (!ModelState.IsValid)

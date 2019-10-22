@@ -1,10 +1,13 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace Heavy.Web.ViewModels
 {
     public class AddUserViewModel
     {
+        //[BindNever]
+        //[BindRequired]
         [Required,Display(Name = "用户名")]
         public string UserName { get; set; }
 

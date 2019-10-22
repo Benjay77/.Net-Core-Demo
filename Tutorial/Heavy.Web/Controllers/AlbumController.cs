@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System.Collections.Generic;
+using System.Net;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
 using Heavy.Web.Models;
@@ -160,5 +161,23 @@ namespace Heavy.Web.Controllers
                 return View();
             }
         }
+
+        public ActionResult List(
+            [FromQuery] int id,
+            [FromHeader(Name = "Accept")] string accept)
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult List(List<SomeModel> items)
+        {
+            return View();
+        }
+    }
+    public class SomeModel
+    {
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
     }
 }
