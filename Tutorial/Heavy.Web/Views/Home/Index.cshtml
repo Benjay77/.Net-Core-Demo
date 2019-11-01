@@ -1,8 +1,19 @@
-﻿@{
+﻿@using Heavy.Web.TagHelpers.Models
+@{
     ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
+    
+    <email>Support@contoso.com</email>
+    
+    <p bold my-style ="@(new MyStyle
+                       {
+                           Color = "red",
+                           FontFamily = "SimHei",
+                           FontSize = 30
+                       })">这应该是粗字体</p>
+
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
