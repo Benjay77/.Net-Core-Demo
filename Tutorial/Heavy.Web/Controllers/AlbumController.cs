@@ -2,12 +2,14 @@
 using System.Net;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
+using Heavy.Web.Data;
 using Heavy.Web.Models;
 using Heavy.Web.Services;
 using Heavy.Web.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 namespace Heavy.Web.Controllers
 {
@@ -16,11 +18,13 @@ namespace Heavy.Web.Controllers
     {
         private readonly IAlbumService _albumService;
         private readonly HtmlEncoder _htmlEncoder;
+        private readonly ILogger<AlbumController> _logger;
 
-        public AlbumController(IAlbumService albumService,HtmlEncoder htmlEncoder)
+        public AlbumController(IAlbumService albumService,HtmlEncoder htmlEncoder, ILogger<AlbumController> logger)
         {
             _albumService = albumService;
             _htmlEncoder = htmlEncoder;
+            _logger = logger;
         }
 
         // GET: Album
@@ -33,6 +37,8 @@ namespace Heavy.Web.Controllers
         // GET: Album/Details/5
         public async Task<ActionResult> Details(int id)
         {
+            _logger.LogInformation(MyLogEventIds.AlbumPage, $"Visiting Album {0}", id);
+
             var album = await _albumService.GetByIdAsync(id);
             if (album == null)
             {

@@ -92,9 +92,12 @@ namespace Heavy.Web
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            //app.UseWelcomePage();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseStatusCodePages();
                 app.UseDatabaseErrorPage();
             }
             else
