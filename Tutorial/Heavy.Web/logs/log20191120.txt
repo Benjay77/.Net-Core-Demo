@@ -1,0 +1,162 @@
+2019-11-20 16:54:47.616 +08:00 [INF] Entity Framework Core 2.2.4-servicing-10062 initialized 'HeavyContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2019-11-20 16:54:49.625 +08:00 [INF] Executed DbCommand (124ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Albums] AS [a])
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END
+2019-11-20 16:54:49.752 +08:00 [INF] User profile is available. Using 'C:\Users\Athena\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2019-11-20 16:54:52.992 +08:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/  
+2019-11-20 16:54:53.114 +08:00 [INF] Executing endpoint 'Heavy.Web.Controllers.HomeController.Index (Heavy.Web)'
+2019-11-20 16:54:53.207 +08:00 [INF] Route matched with {action = "Index", controller = "Home", page = "", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller Heavy.Web.Controllers.HomeController (Heavy.Web).
+2019-11-20 16:54:53.321 +08:00 [INF] Executing action method Heavy.Web.Controllers.HomeController.Index (Heavy.Web) - Validation state: "Valid"
+2019-11-20 16:54:53.324 +08:00 [INF] Visiting Home Index..
+2019-11-20 16:54:53.333 +08:00 [INF] Executed action method Heavy.Web.Controllers.HomeController.Index (Heavy.Web), returned result Microsoft.AspNetCore.Mvc.ViewResult in 4.9344ms.
+2019-11-20 16:54:53.374 +08:00 [INF] Executing ViewResult, running view Index.
+2019-11-20 16:55:06.165 +08:00 [INF] Executed action Heavy.Web.Controllers.HomeController.Index (Heavy.Web) in 12952.658000000001ms
+2019-11-20 16:55:06.168 +08:00 [INF] Executed endpoint 'Heavy.Web.Controllers.HomeController.Index (Heavy.Web)'
+2019-11-20 16:55:06.180 +08:00 [ERR] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: The view 'Components/InternetStatus/Default' was not found. The following locations were searched:
+/Views/Home/Components/InternetStatus/Default.cshtml
+/Views/Shared/Components/InternetStatus/Default.cshtml
+/Pages/Shared/Components/InternetStatus/Default.cshtml
+   at Microsoft.AspNetCore.Mvc.ViewEngines.ViewEngineResult.EnsureSuccessful(IEnumerable`1 originalLocations)
+   at Microsoft.AspNetCore.Mvc.ViewComponents.ViewViewComponentResult.ExecuteAsync(ViewComponentContext context)
+   at Microsoft.AspNetCore.Mvc.ViewComponents.DefaultViewComponentInvoker.InvokeAsync(ViewComponentContext context)
+   at Microsoft.AspNetCore.Mvc.ViewComponents.DefaultViewComponentHelper.InvokeCoreAsync(ViewComponentDescriptor descriptor, Object arguments)
+   at AspNetCore.Views_Shared__Layout.<ExecuteAsync>b__58_1() in E:\Demo\.Net-Core-Demo\Tutorial\Heavy.Web\Views\Shared\_Layout.cshtml:line 61
+   at Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperExecutionContext.SetOutputContentAsync()
+   at AspNetCore.Views_Shared__Layout.ExecuteAsync()
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageCoreAsync(IRazorPage page, ViewContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageAsync(IRazorPage page, ViewContext context, Boolean invokeViewStarts)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderLayoutAsync(ViewContext context, ViewBufferTextWriter bodyWriter)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderAsync(ViewContext context)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ViewContext viewContext, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ActionContext actionContext, IView view, ViewDataDictionary viewData, ITempDataDictionary tempData, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.ExecuteAsync(ActionContext context, ViewResult result)
+   at Microsoft.AspNetCore.Mvc.ViewResult.ExecuteResultAsync(ActionContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeResultAsync(IActionResult result)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResultFilterAsync[TFilter,TFilterAsync]()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResultExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.ResultNext[TFilter,TFilterAsync](State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeResultFilters()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResourceFilter()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeFilterPipelineAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeAsync()
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.MigrationsEndPointMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.DatabaseErrorPageMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.DatabaseErrorPageMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.StatusCodePagesMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2019-11-20 16:55:06.393 +08:00 [INF] Request finished in 13402.9906ms 500 text/html; charset=utf-8
+2019-11-20 16:55:06.695 +08:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/favicon.ico  
+2019-11-20 16:55:06.709 +08:00 [INF] The file /favicon.ico was not modified
+2019-11-20 16:55:06.716 +08:00 [INF] Request finished in 21.5735ms 304 image/x-icon
+2019-11-20 17:00:16.428 +08:00 [INF] Entity Framework Core 2.2.4-servicing-10062 initialized 'HeavyContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2019-11-20 17:00:16.839 +08:00 [INF] Executed DbCommand (55ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Albums] AS [a])
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END
+2019-11-20 17:00:16.940 +08:00 [INF] User profile is available. Using 'C:\Users\Athena\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2019-11-20 17:00:19.071 +08:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/  
+2019-11-20 17:00:19.206 +08:00 [INF] Executing endpoint 'Heavy.Web.Controllers.HomeController.Index (Heavy.Web)'
+2019-11-20 17:00:19.260 +08:00 [INF] Route matched with {action = "Index", controller = "Home", page = "", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller Heavy.Web.Controllers.HomeController (Heavy.Web).
+2019-11-20 17:00:19.509 +08:00 [INF] Executing action method Heavy.Web.Controllers.HomeController.Index (Heavy.Web) - Validation state: "Valid"
+2019-11-20 17:00:19.512 +08:00 [INF] Visiting Home Index..
+2019-11-20 17:00:19.518 +08:00 [INF] Executed action method Heavy.Web.Controllers.HomeController.Index (Heavy.Web), returned result Microsoft.AspNetCore.Mvc.ViewResult in 2.1211ms.
+2019-11-20 17:00:19.556 +08:00 [INF] Executing ViewResult, running view Index.
+2019-11-20 17:00:21.188 +08:00 [INF] Executed ViewResult - view Index executed in 1655.5753ms.
+2019-11-20 17:00:21.206 +08:00 [INF] Executed action Heavy.Web.Controllers.HomeController.Index (Heavy.Web) in 1942.5819000000001ms
+2019-11-20 17:00:21.210 +08:00 [INF] Executed endpoint 'Heavy.Web.Controllers.HomeController.Index (Heavy.Web)'
+2019-11-20 17:00:21.243 +08:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/lib/bootstrap/dist/css/bootstrap.css  
+2019-11-20 17:00:21.274 +08:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/lib/bootstrap/dist/js/bootstrap.bundle.js  
+2019-11-20 17:00:21.274 +08:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/lib/jquery/dist/jquery.js  
+2019-11-20 17:00:21.279 +08:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/lib/jquery-validation/dist/jquery.validate.js  
+2019-11-20 17:00:21.279 +08:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js  
+2019-11-20 17:00:21.280 +08:00 [INF] Request finished in 2209.8731ms 200 text/html; charset=utf-8
+2019-11-20 17:00:21.283 +08:00 [INF] The file /lib/bootstrap/dist/js/bootstrap.bundle.js was not modified
+2019-11-20 17:00:21.283 +08:00 [INF] The file /lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js was not modified
+2019-11-20 17:00:21.283 +08:00 [INF] The file /lib/bootstrap/dist/css/bootstrap.css was not modified
+2019-11-20 17:00:21.283 +08:00 [INF] The file /lib/jquery-validation/dist/jquery.validate.js was not modified
+2019-11-20 17:00:21.283 +08:00 [INF] The file /lib/jquery/dist/jquery.js was not modified
+2019-11-20 17:00:21.288 +08:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/css/site.css  
+2019-11-20 17:00:21.294 +08:00 [INF] Request finished in 14.4455ms 304 application/javascript
+2019-11-20 17:00:21.294 +08:00 [INF] Request finished in 19.445ms 304 application/javascript
+2019-11-20 17:00:21.294 +08:00 [INF] Request finished in 51.0987ms 304 text/css
+2019-11-20 17:00:21.296 +08:00 [INF] Request finished in 17.2993ms 304 application/javascript
+2019-11-20 17:00:21.306 +08:00 [INF] Request finished in 32.2099ms 304 application/javascript
+2019-11-20 17:00:21.310 +08:00 [INF] The file /css/site.css was not modified
+2019-11-20 17:00:21.314 +08:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/js/site.js?v=4q1jwFhaPaZgr8WAUSrux6hAuh0XDg9kPS3xIVq36I0  
+2019-11-20 17:00:21.339 +08:00 [INF] The file /js/site.js was not modified
+2019-11-20 17:00:21.334 +08:00 [INF] Request finished in 45.8361ms 304 text/css
+2019-11-20 17:00:21.343 +08:00 [INF] Request finished in 29.0401ms 304 application/javascript
+2019-11-20 17:01:07.715 +08:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/?  
+2019-11-20 17:01:07.717 +08:00 [INF] Executing endpoint 'Heavy.Web.Controllers.HomeController.Index (Heavy.Web)'
+2019-11-20 17:01:07.729 +08:00 [INF] Route matched with {action = "Index", controller = "Home", page = "", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller Heavy.Web.Controllers.HomeController (Heavy.Web).
+2019-11-20 17:01:07.772 +08:00 [INF] Executing action method Heavy.Web.Controllers.HomeController.Index (Heavy.Web) - Validation state: "Valid"
+2019-11-20 17:01:07.775 +08:00 [INF] Visiting Home Index..
+2019-11-20 17:01:07.777 +08:00 [INF] Executed action method Heavy.Web.Controllers.HomeController.Index (Heavy.Web), returned result Microsoft.AspNetCore.Mvc.ViewResult in 2.2742ms.
+2019-11-20 17:01:07.780 +08:00 [INF] Executing ViewResult, running view Index.
+2019-11-20 17:01:20.011 +08:00 [INF] Executed ViewResult - view Index executed in 12216.1294ms.
+2019-11-20 17:01:20.042 +08:00 [INF] Executed action Heavy.Web.Controllers.HomeController.Index (Heavy.Web) in 12308.635400000001ms
+2019-11-20 17:01:20.046 +08:00 [INF] Executed endpoint 'Heavy.Web.Controllers.HomeController.Index (Heavy.Web)'
+2019-11-20 17:01:20.051 +08:00 [INF] Request finished in 12336.1818ms 200 text/html; charset=utf-8
+2019-11-20 17:01:31.216 +08:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/  
+2019-11-20 17:01:31.227 +08:00 [INF] Executing endpoint 'Heavy.Web.Controllers.HomeController.Index (Heavy.Web)'
+2019-11-20 17:01:31.228 +08:00 [INF] Route matched with {action = "Index", controller = "Home", page = "", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller Heavy.Web.Controllers.HomeController (Heavy.Web).
+2019-11-20 17:01:31.273 +08:00 [INF] Executing action method Heavy.Web.Controllers.HomeController.Index (Heavy.Web) - Validation state: "Valid"
+2019-11-20 17:01:31.275 +08:00 [INF] Visiting Home Index..
+2019-11-20 17:01:31.277 +08:00 [INF] Executed action method Heavy.Web.Controllers.HomeController.Index (Heavy.Web), returned result Microsoft.AspNetCore.Mvc.ViewResult in 1.2169ms.
+2019-11-20 17:01:31.279 +08:00 [INF] Executing ViewResult, running view Index.
+2019-11-20 17:01:31.997 +08:00 [INF] Executed ViewResult - view Index executed in 717.63200000000006ms.
+2019-11-20 17:01:32.001 +08:00 [INF] Executed action Heavy.Web.Controllers.HomeController.Index (Heavy.Web) in 769.44670000000008ms
+2019-11-20 17:01:32.004 +08:00 [INF] Executed endpoint 'Heavy.Web.Controllers.HomeController.Index (Heavy.Web)'
+2019-11-20 17:01:32.008 +08:00 [INF] Request finished in 792.1188ms 200 text/html; charset=utf-8
+2019-11-20 17:01:36.362 +08:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/User  
+2019-11-20 17:01:36.367 +08:00 [INF] Executing endpoint 'Heavy.Web.Controllers.UserController.Index (Heavy.Web)'
+2019-11-20 17:01:36.385 +08:00 [INF] Route matched with {action = "Index", controller = "User", page = "", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index() on controller Heavy.Web.Controllers.UserController (Heavy.Web).
+2019-11-20 17:01:36.404 +08:00 [INF] Authorization failed.
+2019-11-20 17:01:36.407 +08:00 [INF] Authorization failed for the request at filter 'Microsoft.AspNetCore.Mvc.Authorization.AuthorizeFilter'.
+2019-11-20 17:01:36.413 +08:00 [INF] Executing ChallengeResult with authentication schemes ([]).
+2019-11-20 17:01:36.426 +08:00 [INF] AuthenticationScheme: Identity.Application was challenged.
+2019-11-20 17:01:36.427 +08:00 [INF] Executed action Heavy.Web.Controllers.UserController.Index (Heavy.Web) in 35.726ms
+2019-11-20 17:01:36.429 +08:00 [INF] Executed endpoint 'Heavy.Web.Controllers.UserController.Index (Heavy.Web)'
+2019-11-20 17:01:36.430 +08:00 [INF] Request finished in 67.9953ms 302 
+2019-11-20 17:01:36.436 +08:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/Identity/Account/Login?ReturnUrl=%2FUser  
+2019-11-20 17:01:36.440 +08:00 [INF] Executing endpoint 'Page: /Account/Login'
+2019-11-20 17:01:36.483 +08:00 [INF] Route matched with {page = "/Account/Login", area = "Identity", action = "", controller = ""}. Executing page /Account/Login
+2019-11-20 17:01:36.509 +08:00 [INF] Executing handler method Microsoft.AspNetCore.Identity.UI.V4.Pages.Account.Internal.LoginModel.OnGetAsync - ModelState is "Valid"
+2019-11-20 17:01:36.520 +08:00 [INF] AuthenticationScheme: Identity.External signed out.
+2019-11-20 17:01:36.525 +08:00 [INF] Executed handler method OnGetAsync, returned result .
+2019-11-20 17:01:36.529 +08:00 [INF] Executing an implicit handler method - ModelState is "Valid"
+2019-11-20 17:01:36.531 +08:00 [INF] Executed an implicit handler method, returned result Microsoft.AspNetCore.Mvc.RazorPages.PageResult.
+2019-11-20 17:01:37.259 +08:00 [INF] Executed page /Account/Login in 772.71840000000009ms
+2019-11-20 17:01:37.262 +08:00 [INF] Executed endpoint 'Page: /Account/Login'
+2019-11-20 17:01:37.264 +08:00 [INF] Request finished in 828.0539ms 200 text/html; charset=utf-8
+2019-11-20 17:01:37.288 +08:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/Identity/lib/jquery-validation/dist/jquery.validate.js  
+2019-11-20 17:01:37.288 +08:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/Identity/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js  
+2019-11-20 17:01:37.292 +08:00 [INF] The file /Identity/lib/jquery-validation/dist/jquery.validate.js was not modified
+2019-11-20 17:01:37.294 +08:00 [INF] The file /Identity/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js was not modified
+2019-11-20 17:01:37.295 +08:00 [INF] Request finished in 6.8583ms 304 application/javascript
+2019-11-20 17:01:37.297 +08:00 [INF] Request finished in 9.0739ms 304 application/javascript
+2019-11-20 17:01:46.656 +08:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/Identity/Account/Login?  
+2019-11-20 17:01:46.668 +08:00 [INF] Executing endpoint 'Page: /Account/Login'
+2019-11-20 17:01:46.672 +08:00 [INF] Route matched with {page = "/Account/Login", area = "Identity", action = "", controller = ""}. Executing page /Account/Login
+2019-11-20 17:01:46.679 +08:00 [INF] Executing handler method Microsoft.AspNetCore.Identity.UI.V4.Pages.Account.Internal.LoginModel.OnGetAsync - ModelState is "Valid"
+2019-11-20 17:01:46.687 +08:00 [INF] AuthenticationScheme: Identity.External signed out.
+2019-11-20 17:01:46.690 +08:00 [INF] Executed handler method OnGetAsync, returned result .
+2019-11-20 17:01:46.693 +08:00 [INF] Executing an implicit handler method - ModelState is "Valid"
+2019-11-20 17:01:46.695 +08:00 [INF] Executed an implicit handler method, returned result Microsoft.AspNetCore.Mvc.RazorPages.PageResult.
+2019-11-20 17:01:58.950 +08:00 [INF] Executed page /Account/Login in 12274.8048ms
+2019-11-20 17:01:58.952 +08:00 [INF] Executed endpoint 'Page: /Account/Login'
+2019-11-20 17:01:58.955 +08:00 [INF] Request finished in 12299.303ms 200 text/html; charset=utf-8
