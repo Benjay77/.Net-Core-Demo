@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Net;
+using System.Text;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
 using Heavy.Web.Data;
@@ -9,7 +11,9 @@ using Heavy.Web.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 
 namespace Heavy.Web.Controllers
 {
@@ -19,18 +23,36 @@ namespace Heavy.Web.Controllers
         private readonly IAlbumService _albumService;
         private readonly HtmlEncoder _htmlEncoder;
         private readonly ILogger<AlbumController> _logger;
+        private readonly IDistributedCache _distributedCache;
 
-        public AlbumController(IAlbumService albumService,HtmlEncoder htmlEncoder, ILogger<AlbumController> logger)
+        public AlbumController(IAlbumService albumService,HtmlEncoder htmlEncoder, ILogger<AlbumController> logger,IDistributedCache distributedCache)
         {
             _albumService = albumService;
             _htmlEncoder = htmlEncoder;
             _logger = logger;
+            _distributedCache = distributedCache;
         }
 
         // GET: Album
         public async Task<ActionResult> Index()
         {
-            var albums = await _albumService.GetAllAsync();
+            List<Album> albums = null;
+            //redis
+            var cachedAlbums = await _distributedCache.GetAsync("AlbumsOfToday");
+            if (cachedAlbums ==null)
+            {
+                albums = await _albumService.GetAllAsync();
+                var str = JsonConvert.SerializeObject(albums);
+                var obj = Encoding.UTF8.GetBytes(str);
+                var options = new DistributedCacheEntryOptions().SetSlidingExpiration(TimeSpan.FromSeconds(30));
+                await _distributedCache.SetAsync("AlbumsOfToday", obj, options);
+            }
+            else
+            {
+                var encodedAlbums = await _distributedCache.GetAsync("AlbumsOfToday");
+                var str = Encoding.UTF8.GetString(encodedAlbums);
+                albums = JsonConvert.DeserializeObject<List<Album>>(str);
+            }
             return View(albums);
         }
 

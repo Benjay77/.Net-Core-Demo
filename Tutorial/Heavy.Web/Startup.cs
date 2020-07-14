@@ -93,6 +93,15 @@ namespace Heavy.Web
                 //options.Filters.Add(typeof(LogAsyncResourceFilter));
                 options.Filters.Add<LogResourceFilter>();
             });
+
+            //redis
+            //services.AddSingleton<IConnectionMultiplexer>(ConnectionMultiplexer.Connect("localhost:6379"));
+
+            services.AddDistributedRedisCache(options =>
+            {
+                options.InstanceName = "RedisInstance";
+                options.Configuration = "localhost";
+            });
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
